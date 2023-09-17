@@ -43,12 +43,13 @@ TreeMap *createTreeMap(int (*lower_than)(void *key1, void *key2)) {
   new->current = NULL;
 
   new->lower_than = lower_than;
-  
+
   return new;
 }
 
-TreeNode* searchTreeNode(TreeMap* tree, TreeNode* node, void* key)
-{
+TreeNode *searchTreeNode(TreeMap *tree, TreeNode *node, void *key) {
+  printf("HELLO\n");
+
   if (node == NULL)
     return NULL;
 
@@ -65,8 +66,7 @@ TreeNode* searchTreeNode(TreeMap* tree, TreeNode* node, void* key)
   return NULL;
 }
 
-void insertNode(TreeMap* tree, TreeNode* node, TreeNode* new)
-{
+void insertNode(TreeMap *tree, TreeNode *node, TreeNode *new) {
   if (node == NULL)
     node = new;
 
@@ -77,23 +77,34 @@ void insertNode(TreeMap* tree, TreeNode* node, TreeNode* new)
     insertNode(tree, node->right, new);
 }
 
-void insertTreeMap(TreeMap *tree, void *key, void *value)
-{
+void insertTreeMap(TreeMap *tree, void *key, void *value) {
   if (tree == NULL)
     return;
-  
-  TreeNode* temp = searchTreeNode(tree, tree->root, key);
-  if(temp == NULL)
+
+  TreeNode *temp = searchTreeNode(tree, tree->root, key);
+  if (temp == NULL)
     return;
 
-  TreeNode* new = createTreeNode(key, value);
+  TreeNode *new = createTreeNode(key, value);
 
   insertNode(tree, tree->root, new);
   tree->current = new;
-
 }
 
-TreeNode *minimum(TreeNode *x) { return NULL; }
+TreeNode *minimum(TreeNode *x) {
+
+  TreeNode* current = x;
+
+  while (current != NULL)
+    {
+      if (current->left != NULL)
+        current = current->left;
+      else
+        return current; 
+    }
+  
+  return NULL;
+}
 
 void removeNode(TreeMap *tree, TreeNode *node) {}
 
@@ -107,17 +118,16 @@ void eraseTreeMap(TreeMap *tree, void *key) {
   removeNode(tree, node);
 }
 
-Pair *searchTreeMap(TreeMap *tree, void *key)
-{
+Pair *searchTreeMap(TreeMap *tree, void *key) {
   if (tree == NULL)
-    return  NULL;
+    return NULL;
 
-  TreeNode* result = searchTreeNode(tree, tree->root, key);
+  TreeNode *result = searchTreeNode(tree, tree->root, key);
   tree->current = result;
 
-  if(result == NULL)
+  if (result == NULL)
     return NULL;
-  
+
   return result->pair;
 }
 
