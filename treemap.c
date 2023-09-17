@@ -52,13 +52,13 @@ TreeNode* searchTreeNode(TreeMap* tree, TreeNode* node, void* key)
   if (node == NULL)
     return NULL;
 
-  if (is_equal(tree, node->pair->key, key) == 1)
+  else if (is_equal(tree, node->pair->key, key) == 1)
     return node;
 
-  if (tree->lower_than(node->pair->key, key) == 1)
+  else if (tree->lower_than(node->pair->key, key) == 1)
     return searchTreeNode(tree, node->right, key);
 
-  if (tree->lower_than(node->pair->key, key) != 1)
+  else if (tree->lower_than(node->pair->key, key) != 1)
     return searchTreeNode(tree, node->left, key);
 
   // Error
