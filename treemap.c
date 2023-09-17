@@ -75,8 +75,6 @@ void insertNode(TreeNode* node, TreeNode* new)
 
   if (node->pair->key > new->pair->key)
     insertNode(node->right, new);
-
-  return;
 }
 
 void insertTreeMap(TreeMap *tree, void *key, void *value)
