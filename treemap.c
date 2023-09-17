@@ -52,6 +52,8 @@ TreeNode* searchTreeNode(TreeNode* node, void* key)
   if (node == NULL)
     return NULL;
 
+  printf("%i\n", node->pair->key);
+
   if (node->pair->key == key)
     return node;
 
