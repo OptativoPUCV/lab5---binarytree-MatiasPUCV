@@ -66,13 +66,13 @@ void eraseTreeMap(TreeMap *tree, void *key) {
   removeNode(tree, node);
 }
 
-Pair* searchTreeNode(TreeNode* node, void* key)
+TreeNode* searchTreeNode(TreeNode* node, void* key)
 {
   if (node == NULL)
     return NULL;
 
   if (node->pair->key == key)
-    return node->pair;
+    return node;
 
   if (node->pair->key < key)
     return searchTreeNode(node->left, key);
@@ -88,8 +88,11 @@ Pair *searchTreeMap(TreeMap *tree, void *key)
 {
   if (tree == NULL)
     return  NULL;
+
+  TreeNode* result = searchTreeNode(tree->root, key);
+  tree->current = result;
   
-  return searchTreeNode(tree->root, key);
+  return result->pair;
 }
 
 Pair *upperBound(TreeMap *tree, void *key) { return NULL; }
