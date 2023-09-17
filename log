@@ -86,3 +86,20 @@ Sun 17 Sep 2023 11:19:42 PM UTC:
  tests:  6|7
 total_score: 5/70
 98806df
+Sun 17 Sep 2023 11:25:28 PM UTC: 
+ treemap.c | 18 +++++++++---------
+ 1 file changed, 9 insertions(+), 9 deletions(-)
+In file included from test.c:4:
+treemap.c: In function ‘insertNode’:
+treemap.c:73:40: error: passing argument 1 of ‘tree->lower_than’ makes pointer from integer without a cast [-Werror=int-conversion]
+   73 |   if (tree->lower_than(node->pair->key < new->pair->key) == 1)
+      |                        ~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~
+      |                                        |
+      |                                        int
+treemap.c:73:40: note: expected ‘void *’ but argument is of type ‘int’
+treemap.c:73:7: error: too few arguments to function ‘tree->lower_than’
+   73 |   if (tree->lower_than(node->pair->key < new->pair->key) == 1)
+      |       ^~~~
+cc1: all warnings being treated as errors
+Compilation failed
+e752f6b
