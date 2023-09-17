@@ -55,10 +55,10 @@ TreeNode* searchTreeNode(TreeMap* tree, TreeNode* node, void* key)
   if (is_equal(tree, node->pair->key, key) == 1)
     return node;
 
-  if (tree->lower_than(node->pair->key, key) != 1)
+  if (tree->lower_than(node->pair->key, key) == 1)
     return searchTreeNode(tree, node->left, key);
 
-  if (tree->lower_than(node->pair->key, key) == 1)
+  if (tree->lower_than(node->pair->key, key) != 1)
     return searchTreeNode(tree, node->right, key);
 
   // Error
