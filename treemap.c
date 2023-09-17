@@ -82,7 +82,7 @@ void insertTreeMap(TreeMap *tree, void *key, void *value)
   if (tree == NULL)
     return;
   
-  TreeNode* temp = searchTreeNode(tree->root, key);
+  TreeNode* temp = searchTreeNode(tree, tree->root, key);
   if(temp == NULL)
     return;
 
