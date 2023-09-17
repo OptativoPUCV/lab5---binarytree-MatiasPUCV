@@ -66,7 +66,7 @@ void eraseTreeMap(TreeMap *tree, void *key) {
   removeNode(tree, node);
 }
 
-Pair *searchTreeNode(TreeNode* node, void* key)
+Pair* searchTreeNode(TreeNode* node, void* key)
 {
   if (node == NULL)
     return NULL;
@@ -79,6 +79,9 @@ Pair *searchTreeNode(TreeNode* node, void* key)
 
   if (node->pair->key > key)
     return searchTreeNode(node->right, key);
+
+  // Error
+  return NULL;
 }
 
 Pair *searchTreeMap(TreeMap *tree, void *key)
