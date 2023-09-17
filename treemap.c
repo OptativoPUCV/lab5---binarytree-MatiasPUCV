@@ -70,7 +70,7 @@ void insertNode(TreeMap* tree, TreeNode* node, TreeNode* new)
   if (node == NULL)
     node = new;
 
-  if (tree->lower_than(node->pair->key < new->pair->key) == 1)
+  if (tree->lower_than(node->pair->key, new->pair->key) == 1)
     insertNode(tree, node->left, new);
 
   if (tree->lower_than(node->pair->key, new->pair->key) != 1)
