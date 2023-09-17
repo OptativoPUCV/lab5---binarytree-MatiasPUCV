@@ -58,3 +58,25 @@ treemap.c:55:12: error: format ‘%i’ expects argument of type ‘int’, but 
 cc1: all warnings being treated as errors
 Compilation failed
 3eb0360
+Sun 17 Sep 2023 11:19:18 PM UTC: 
+ treemap.c | 16 +++++++---------
+ 1 file changed, 7 insertions(+), 9 deletions(-)
+In file included from test.c:4:
+treemap.c: In function ‘insertTreeMap’:
+treemap.c:85:39: error: passing argument 1 of ‘searchTreeNode’ from incompatible pointer type [-Werror=incompatible-pointer-types]
+   85 |   TreeNode* temp = searchTreeNode(tree->root, key);
+      |                                   ~~~~^~~~~~
+      |                                       |
+      |                                       TreeNode *
+treemap.c:50:35: note: expected ‘TreeMap *’ but argument is of type ‘TreeNode *’
+   50 | TreeNode* searchTreeNode(TreeMap* tree, TreeNode* node, void* key)
+      |                          ~~~~~~~~~^~~~
+treemap.c:85:20: error: too few arguments to function ‘searchTreeNode’
+   85 |   TreeNode* temp = searchTreeNode(tree->root, key);
+      |                    ^~~~~~~~~~~~~~
+treemap.c:50:11: note: declared here
+   50 | TreeNode* searchTreeNode(TreeMap* tree, TreeNode* node, void* key)
+      |           ^~~~~~~~~~~~~~
+cc1: all warnings being treated as errors
+Compilation failed
+97b0c8e

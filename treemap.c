@@ -47,21 +47,19 @@ TreeMap *createTreeMap(int (*lower_than)(void *key1, void *key2)) {
   return new;
 }
 
-TreeNode* searchTreeNode(TreeNode* node, void* key)
+TreeNode* searchTreeNode(TreeMap* tree, TreeNode* node, void* key)
 {
   if (node == NULL)
     return NULL;
 
-  printf("%i\n", node->pair->key);
-
-  if (node->pair->key == key)
+  if (is_equal(tree, node->pair->key, key))
     return node;
 
-  if (node->pair->key < key)
-    return searchTreeNode(node->left, key);
+  if (tree->lower_than(node->pair->key, key))
+    return searchTreeNode(tree, node->left, key);
 
-  if (node->pair->key > key)
-    return searchTreeNode(node->right, key);
+  if (!tree->lower_than(node->pair->key, key))
+    return searchTreeNode(tree, node->right, key);
 
   // Error
   return NULL;
@@ -114,7 +112,7 @@ Pair *searchTreeMap(TreeMap *tree, void *key)
   if (tree == NULL)
     return  NULL;
 
-  TreeNode* result = searchTreeNode(tree->root, key);
+  TreeNode* result = searchTreeNode(tree, tree->root, key);
   tree->current = result;
 
   if(result == NULL)
