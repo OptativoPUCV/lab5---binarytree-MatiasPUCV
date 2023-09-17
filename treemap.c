@@ -91,6 +91,9 @@ Pair *searchTreeMap(TreeMap *tree, void *key)
 
   TreeNode* result = searchTreeNode(tree->root, key);
   tree->current = result;
+
+  if(result == NULL)
+    return NULL;
   
   return result->pair;
 }
