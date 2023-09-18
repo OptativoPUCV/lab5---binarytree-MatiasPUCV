@@ -65,7 +65,7 @@ void insertTreeNode(TreeMap *tree, TreeNode *node, TreeNode* new)
     if (node->right == NULL)
     {
       node->right = new;
-      new->parent = node->right;
+      new->parent = node;
       return;
     }
     else
@@ -79,7 +79,7 @@ void insertTreeNode(TreeMap *tree, TreeNode *node, TreeNode* new)
     if (node->left == NULL)
     {
       node->left = new;
-      new->parent = node->left;
+      new->parent = node;
       return; 
     }
     else
