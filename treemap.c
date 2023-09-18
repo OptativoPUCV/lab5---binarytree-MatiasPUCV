@@ -123,6 +123,9 @@ void removeNodeHelper(TreeMap* tree, TreeNode* node, void* val)
 
 void removeNode(TreeMap *tree, TreeNode *node)
 {
+  if (node == NULL)
+    return;
+  
   if (searchTreeMap(tree, node->pair->key) == NULL)
     return;
 
