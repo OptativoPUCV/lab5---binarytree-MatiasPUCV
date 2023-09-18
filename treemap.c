@@ -194,12 +194,13 @@ TreeNode *sdearchTreeNode(TreeMap *tree, TreeNode *node, void *key) {
 
 Pair *upperBound(TreeMap *tree, void *key) {
 
-  TreeNode *ub = NULL;
+  TreeNode *ub = tree->root;
   TreeNode *current = tree->root;
 
   while (current != NULL)
   {
-    ub = current;
+    if(tree->lower_than(current->pair->key, ub->pair->key))
+      ub = current;
 
     if(is_equal(tree, current->pair->key, key))
       return current->pair;
