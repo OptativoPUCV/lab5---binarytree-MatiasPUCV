@@ -211,7 +211,20 @@ Pair *nextTreeMap(TreeMap *tree)
     return result->pair;
   }
   else{
-    
+
+    TreeNode* temp = tree->current->parent;
+    while(temp != NULL)
+      {
+        if (tree->lower_than(tree->current->pair->key, temp->pair->key))
+        {
+          tree->current = temp;
+          return temp->pair;
+        }
+        else
+        {
+          temp = temp->parent;
+        }
+      }
   }
   
   return NULL;
