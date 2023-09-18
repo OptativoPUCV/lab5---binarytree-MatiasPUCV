@@ -309,3 +309,17 @@ Mon 18 Sep 2023 01:41:33 AM UTC:
  tests:  18|3
 total_score: 40/70
 4c9d3b7
+Mon 18 Sep 2023 01:59:00 AM UTC: 
+ treemap.c | 17 ++++++++++++++---
+ 1 file changed, 14 insertions(+), 3 deletions(-)
+In file included from test.c:4:
+treemap.c: In function ‘firstTreeMap’:
+treemap.c:194:7: error: this ‘else’ clause does not guard... [-Werror=misleading-indentation]
+  194 |       else;
+      |       ^~~~
+treemap.c:195:9: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the ‘else’
+  195 |         return current->pair;
+      |         ^~~~~~
+cc1: all warnings being treated as errors
+Compilation failed
+0e05e34
