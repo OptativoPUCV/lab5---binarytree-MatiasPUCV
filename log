@@ -361,3 +361,14 @@ treemap.c:190:13: error: ‘ub’ may be used uninitialized in this function [-W
 cc1: all warnings being treated as errors
 Compilation failed
 200eb3f
+Mon 18 Sep 2023 02:24:24 AM UTC: 
+ treemap.c | 8 +++-----
+ 1 file changed, 3 insertions(+), 5 deletions(-)
+In file included from test.c:4:
+treemap.c: In function ‘upperBound’:
+treemap.c:197:12: error: ‘ub’ may be used uninitialized in this function [-Werror=maybe-uninitialized]
+  197 |   return ub->pair;
+      |          ~~^~~~~~
+cc1: all warnings being treated as errors
+Compilation failed
+e17d9ae

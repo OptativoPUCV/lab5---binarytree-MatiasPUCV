@@ -181,22 +181,20 @@ Pair *searchTreeMap(TreeMap *tree, void *key) {
   return result->pair;
 }
 
-Pair *upperBound(TreeMap *tree, void *key)
-{
-  Pair* temp = searchTreeMap(tree, key);
+Pair *upperBound(TreeMap *tree, void *key) {
+  Pair *temp = searchTreeMap(tree, key);
   if (temp != NULL)
     return temp;
 
-  TreeNode* ub;
-  TreeNode* current = tree->root;
+  TreeNode *ub;
+  TreeNode *current = tree->root;
 
-  while(current != NULL)
-    {
-      ub = current;
-      current = current->left;
-    }
-  
-  return ub;
+  while (current != NULL) {
+    ub = current;
+    current = current->left;
+  }
+
+  return ub->pair;
 }
 
 Pair *firstTreeMap(TreeMap *tree) {
