@@ -119,6 +119,8 @@ void removeNodeHelper(TreeMap* tree, TreeNode* node, void* val)
     node->parent->right = val;
   else if(is_equal(tree, node->parent->left->pair->key, node->pair->key))
     node->parent->left = val;
+
+  free(node);
 }
 
 void removeNode(TreeMap *tree, TreeNode *node)
