@@ -57,7 +57,7 @@ TreeNode *searchTreeNode(TreeMap *tree, TreeNode *node, void *key) {
     return node;
 
   else if (tree->lower_than(node->pair->key, key) == 1)
-    return searchTreeNode(tree, node->right, key);
+    return searchTreeNode(tree, node->left, key);
 
   //else if (tree->lower_than(node->pair->key, key) != 1)
   //  return searchTreeNode(tree, node->right, key);
