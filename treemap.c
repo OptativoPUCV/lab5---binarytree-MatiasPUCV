@@ -144,8 +144,16 @@ void removeNode(TreeMap *tree, TreeNode *node)
     node->left->parent = node->parent;
     removeNodeHelper(tree, node, node->left);
   }
+
+  if(node->right != NULL && node->left != NULL)
+  {
+    
+  }
+  else
+  {
+    free(node);
+  }
   
-  //free(node);
 }
 
 void eraseTreeMap(TreeMap *tree, void *key) {
