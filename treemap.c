@@ -181,17 +181,34 @@ Pair *searchTreeMap(TreeMap *tree, void *key) {
   return result->pair;
 }
 
+TreeNode *sdearchTreeNode(TreeMap *tree, TreeNode *node, void *key) {
+
+  if (node == NULL || is_equal(tree, node->pair->key, key))
+    return node;
+
+  if (tree->lower_than(node->pair->key, key))
+    return searchTreeNode(tree, node->right, key);
+
+  return searchTreeNode(tree, node->left, key);
+}
+
 Pair *upperBound(TreeMap *tree, void *key) {
-  Pair *temp = searchTreeMap(tree, key);
-  if (temp != NULL)
-    return temp;
 
   TreeNode *ub = NULL;
   TreeNode *current = tree->root;
 
-  while (current != NULL) {
+  while (current != NULL)
+  {
     ub = current;
-    current = current->left;
+
+    if(is_equal(tree, current->pair->key, key))
+      return current->pair;
+
+    else if (tree->lower_than(current->pair->key, key))
+      current = current->right;
+    else if (tree->lower_than(current->pair->key, key) != 1)
+      current = current->left;
+    
   }
 
   return ub->pair;
