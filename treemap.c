@@ -73,7 +73,9 @@ void insertTreeMap(TreeMap *tree, void *key, void *value) {
   if (temp == NULL)
     return;
 
-  insertNode(tree, tree->root, new);
+  TreeNode *new = createTreeNode(key, value);
+
+  //insertNode(tree, tree->root, new);
   tree->current = new;
 }
 
