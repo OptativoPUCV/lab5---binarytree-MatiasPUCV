@@ -186,7 +186,7 @@ Pair *upperBound(TreeMap *tree, void *key) {
   if (temp != NULL)
     return temp;
 
-  TreeNode *ub;
+  TreeNode *ub = NULL;
   TreeNode *current = tree->root;
 
   while (current != NULL) {
