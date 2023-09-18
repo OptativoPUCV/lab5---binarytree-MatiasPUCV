@@ -132,22 +132,25 @@ void removeNode(TreeMap *tree, TreeNode *node)
   // Sin hijos
   if(node->right == NULL && node->left == NULL)
     removeNodeHelper(tree, node, NULL);
-    
+
+  // Un hijo
   else if(node->right != NULL && node->left == NULL)
   {
     node->right->parent = node->parent;
     removeNodeHelper(tree, node, node->right);
   }
-    
   else if(node->right == NULL && node->left != NULL)
   {
     node->left->parent = node->parent;
     removeNodeHelper(tree, node, node->left);
   }
 
+  // Dos hijos
   if(node->right != NULL && node->left != NULL)
   {
-    
+    TreeNode* min = minimum(node->right);
+    node->pair = min->pair;
+    removeNode(tree, min);
   }
   else
   {
