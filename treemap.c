@@ -113,55 +113,51 @@ TreeNode *minimum(TreeNode *x) {
   return NULL;
 }
 
-void removeNodeHelper(TreeMap* tree, TreeNode* node, void* val)
-{
-  if(node == NULL)
+void removeNodeHelper(TreeMap *tree, TreeNode *node, void *val) {
+  if (node == NULL)
     return;
 
-  if(node->parent == NULL)
+  if (node->parent->right == NULL)
     return;
-    
-  if(is_equal(tree, node->parent->right->pair->key, node->pair->key))
+
+  if (node->parent->left == NULL)
+    return;
+
+  if (is_equal(tree, node->parent->right->pair->key, node->pair->key))
     node->parent->right = val;
-  else if(is_equal(tree, node->parent->left->pair->key, node->pair->key))
+  else if (is_equal(tree, node->parent->left->pair->key, node->pair->key))
     node->parent->left = val;
 
   free(node);
 }
 
-void removeNode(TreeMap *tree, TreeNode *node)
-{
+void removeNode(TreeMap *tree, TreeNode *node) {
   if (node == NULL)
     return;
-  
+
   if (searchTreeMap(tree, node->pair->key) == NULL)
     return;
 
   // Sin hijos
-  if(node->right == NULL && node->left == NULL)
+  if (node->right == NULL && node->left == NULL)
     removeNodeHelper(tree, node, NULL);
 
   // Un hijo
-  else if(node->right != NULL && node->left == NULL)
-  {
+  else if (node->right != NULL && node->left == NULL) {
     node->right->parent = node->parent;
     removeNodeHelper(tree, node, node->right);
-  }
-  else if(node->right == NULL && node->left != NULL)
-  {
+  } else if (node->right == NULL && node->left != NULL) {
     node->left->parent = node->parent;
     removeNodeHelper(tree, node, node->left);
   }
 
   // Dos hijos
-  else if(node->right != NULL && node->left != NULL)
-  {
-    TreeNode* min = minimum(node->right);
+  else if (node->right != NULL && node->left != NULL) {
+    TreeNode *min = minimum(node->right);
     node->pair->key = min->pair->key;
     node->pair->value = min->pair->value;
     removeNode(tree, min);
   }
-  
 }
 
 void eraseTreeMap(TreeMap *tree, void *key) {
