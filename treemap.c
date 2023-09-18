@@ -131,10 +131,16 @@ void removeNode(TreeMap *tree, TreeNode *node)
     removeNodeHelper(tree, node, NULL);
     
   else if(node->right != NULL && node->left == NULL)
+  {
     removeNodeHelper(tree, node, node->right);
+    node->right->parent = node->parent;
+  }
     
   else if(node->right == NULL && node->left != NULL)
+  {
     removeNodeHelper(tree, node, node->left);
+    node->left->parent = node->parent;
+  }
 
   else if (node->right != NULL && node->left != NULL)
   {
