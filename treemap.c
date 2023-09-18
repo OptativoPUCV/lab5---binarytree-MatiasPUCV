@@ -181,7 +181,23 @@ Pair *searchTreeMap(TreeMap *tree, void *key) {
   return result->pair;
 }
 
-Pair *upperBound(TreeMap *tree, void *key) { return NULL; }
+Pair *upperBound(TreeMap *tree, void *key)
+{
+  Pair* temp = searchTreeMap(tree, key);
+  if (temp != NULL)
+    return temp;
+
+  TreeNode* ub;
+  TreeNode* current = tree->root;
+
+  while(current != NULL)
+    {
+      ub = current;
+      current = current->left;
+    }
+  
+  return ub;
+}
 
 Pair *firstTreeMap(TreeMap *tree) {
   TreeNode *current = tree->root;
@@ -189,43 +205,34 @@ Pair *firstTreeMap(TreeMap *tree) {
   while (current != NULL && current->left != NULL) {
     if (tree->lower_than(current->left->pair->key, current->pair->key))
       current = current->left;
-    else
-    {
+    else {
       return current->pair;
     }
   }
 
-
   return current->pair;
 }
 
-Pair *nextTreeMap(TreeMap *tree)
-{
+Pair *nextTreeMap(TreeMap *tree) {
   if (tree == NULL || tree->current == NULL)
     return NULL;
 
-  if(tree->current->right != NULL)
-  {
-    TreeNode* result = minimum(tree->current->right);
+  if (tree->current->right != NULL) {
+    TreeNode *result = minimum(tree->current->right);
     tree->current = result;
     return result->pair;
-  }
-  else{
+  } else {
 
-    TreeNode* temp = tree->current->parent;
-    while(temp != NULL)
-      {
-        if (tree->lower_than(tree->current->pair->key, temp->pair->key))
-        {
-          tree->current = temp;
-          return temp->pair;
-        }
-        else
-        {
-          temp = temp->parent;
-        }
+    TreeNode *temp = tree->current->parent;
+    while (temp != NULL) {
+      if (tree->lower_than(tree->current->pair->key, temp->pair->key)) {
+        tree->current = temp;
+        return temp->pair;
+      } else {
+        temp = temp->parent;
       }
+    }
   }
-  
+
   return NULL;
 }
