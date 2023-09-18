@@ -190,8 +190,12 @@ Pair *firstTreeMap(TreeMap *tree) {
     if (tree->lower_than(current->left->pair->key, current->pair->key))
       current = current->left;
     else
+    {
+      tree->current = current;
       return current->pair;
+    }
   }
+
 
   return current->pair;
 }
