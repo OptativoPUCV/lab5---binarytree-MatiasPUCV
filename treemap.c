@@ -60,22 +60,18 @@ TreeNode *searchTreeNode(TreeMap *tree, TreeNode *node, void *key) {
   return searchTreeNode(tree, node->left, key);
 }
 
-void insertNode(TreeMap *tree, TreeNode *node, TreeNode *new) {
-  
-
-}
 
 void insertTreeMap(TreeMap *tree, void *key, void *value) {
   if (tree == NULL)
     return;
 
   TreeNode *temp = searchTreeNode(tree, tree->root, key);
-  if (temp == NULL)
+  if (temp != NULL)
     return;
 
   TreeNode *new = createTreeNode(key, value);
 
-  //insertNode(tree, tree->root, new);
+  temp = new;
   tree->current = new;
 }
 
