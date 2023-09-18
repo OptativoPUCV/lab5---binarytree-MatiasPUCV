@@ -204,20 +204,18 @@ Pair *upperBound(TreeMap *tree, void *key) {
       return current->pair;
 
     else if (tree->lower_than(current->pair->key, key))
-    {
       current = current->right;
-    }
       
     else if (tree->lower_than(current->pair->key, key) != 1)
     {
-      if(current != NULL)
-        ub = current;
-      
+      ub = current;
       current = current->left;
-      
     }
     
   }
+
+  if (ub == NULL)
+    return NULL;
 
   return ub->pair;
 }
