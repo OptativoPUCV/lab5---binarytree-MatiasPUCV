@@ -48,7 +48,6 @@ TreeMap *createTreeMap(int (*lower_than)(void *key1, void *key2)) {
 }
 
 TreeNode *searchTreeNode(TreeMap *tree, TreeNode *node, void *key) {
-  printf("HELLO\n");
 
   if (node == NULL || is_equal(tree, node->pair->key, key))
     return node;
