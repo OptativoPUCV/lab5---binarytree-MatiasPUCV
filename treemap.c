@@ -117,6 +117,9 @@ void removeNodeHelper(TreeMap* tree, TreeNode* node, void* val)
 {
   if(node == NULL)
     return;
+
+  if(node->parent == NULL)
+    return;
     
   if(is_equal(tree, node->parent->right->pair->key, node->pair->key))
     node->parent->right = val;
