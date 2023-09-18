@@ -61,18 +61,18 @@ TreeNode *searchTreeNode(TreeMap *tree, TreeNode *node, void *key) {
 }
 
 void insertNode(TreeMap *tree, TreeNode *node, TreeNode *new) {
+  
   if (node == NULL)
     node = new;
 
-  if (tree->lower_than(node->pair->key, new->pair->key) == 1)
+  if (tree->lower_than(node->pair->key, new->pair->key))
+   insertNode(tree, node->right, new);
+  
+  if (!tree->lower_than(node->pair->key, new->pair->key))
     insertNode(tree, node->left, new);
-
-  if (tree->lower_than(node->pair->key, new->pair->key) != 1)
-    insertNode(tree, node->right, new);
 }
 
 void insertTreeMap(TreeMap *tree, void *key, void *value) {
-/*
   if (tree == NULL)
     return;
 
@@ -84,7 +84,6 @@ void insertTreeMap(TreeMap *tree, void *key, void *value) {
 
   insertNode(tree, tree->root, new);
   tree->current = new;
-*/
 }
 
 TreeNode *minimum(TreeNode *x) {
